@@ -1,0 +1,126 @@
+.b-card-form {
+  $block: &;
+
+  width: 320px;
+  margin: 20px auto;
+  padding: 20px 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(#000, 0.2);
+
+  &__title {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  &__descr {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  &__field {
+    margin: 0 0 10px;
+  }
+
+  &__field-group {
+    column-count: 2;
+    column-gap: 10px;
+  }
+
+  &__input {
+    border: 1px solid darken($clr-add, 10%);
+    padding: 5px 10px 5px 40px;
+    border-radius: 3px;
+    background: #fff;
+    position: relative;
+
+    @include atRoot("#{$block}__field.error ") {
+      border-color: $clr-error;
+    }
+
+    @include atRoot("#{$block}__field.valid ") {
+      border-color: $clr-valid;
+    }
+
+    @include atRoot("#{$block}__field.focus ") {
+      border-color: $clr-main;
+      background: rgba($clr-main, 0.05);
+    }
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      text-align: center;
+      color: $clr-main;
+      font-size: 16px;
+
+      @include atRoot("#{$block}__field.error ") {
+        color: $clr-error;
+      }
+
+      @include atRoot("#{$block}__field.valid ") {
+        color: $clr-valid;
+      }
+
+      @include atRoot("#{$block}__field.focus ") {
+        color: $clr-main;
+      }
+    }
+
+    &.cardnumber {
+      &::before {
+        @include addFontIcon("card");
+      }
+    }
+
+    &.expdate {
+      &::before {
+        @include addFontIcon("calendar");
+      }
+    }
+
+    &.cvc {
+      &::before {
+        @include addFontIcon("cvc");
+      }
+    }
+
+    &.cardholder {
+      &::before {
+        @include addFontIcon("cardholder");
+      }
+    }
+
+    &.email {
+      &::before {
+        @include addFontIcon("email");
+      }
+    }
+
+    &.phone {
+      &::before {
+        @include addFontIcon("phone");
+      }
+    }
+
+    &.city {
+      &::before {
+        @include addFontIcon("city");
+      }
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      background: transparent;
+    }
+  }
+
+  &__btn {
+    margin-top: 20px;
+    text-align: center;
+  }
+}

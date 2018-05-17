@@ -7,5 +7,6 @@
   "form.field.cardholder.placeholder": "Держатель карты",
   "form.field.email.placeholder": "E-mail",
   "form.field.phone.placeholder": "Телефон",
-  "form.field.city.placeholder": "Город"
+  "form.field.city.placeholder": "Город",
+  "form.btn.submit.val": "Оплатить"
 }

@@ -1,0 +1,21 @@
+.e-btn {
+  display: inline-block;
+  vertical-align: middle;
+  height: 36px;
+  line-height: 34px;
+  padding: 0 20px;
+  min-width: 200px;
+  background: #fff;
+  color: $clr-main;
+  border: 1px solid $clr-main;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    background: $clr-main;
+    color: #fff;
+  }
+}
