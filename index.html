@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="skype_toolbar" content="skype_toolbar_parser_compatible" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="index,follow,noodp" />
+    <meta name="googlebot" content="index,follow" />
+    <meta name="google" value="notranslate" />
+    <meta name="google" content="nositelinkssearchbox" />
+    <meta name="rating" content="General" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand" />
+    <meta name="x5-orientation" content="landscape/portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="screen-orientation" content="landscape/portrait" />
+    <meta name="full-screen" content="yes" />
+    <meta name="imagemode" content="force" />
+    <meta name="browsermode" content="application" />
+    <meta name="nightmode" content="disable" />
+    <meta name="layoutmode" content="fitscreen" />
+    <meta name="wap-font-scale" content="no" />
+    <title>Платежная форма</title>
+    <link rel="stylesheet" href="/build/css/fonts.min.css" />
+    <link rel="stylesheet" href="/build/css/style.min.css" />
+  </head>
+  <body>
+    <form class="b-card-form js-form" action="" method="POST">
+      <div class="b-card-form__title">Card JS</div>
+      <div class="b-card-form__descr">Пример платежной формы</div>
+      <div class="b-card-form__field-list">
+        <div class="b-card-form__field js-field">
+          <div class="b-card-form__input cardnumber">
+            <input type="text" name="cardnumber" data-type="cardnumber" placeholder="Номер карты" />
+          </div>
+        </div>
+        <div class="b-card-form__field-group">
+          <div class="b-card-form__field js-field">
+            <div class="b-card-form__input expdate">
+              <input type="text" name="expdate" data-type="expdate" placeholder="ММ / ГГ" />
+            </div>
+          </div>
+          <div class="b-card-form__field js-field">
+            <div class="b-card-form__input cvc">
+              <input type="text" name="cvc" data-type="cvc" placeholder="CVC" />
+            </div>
+          </div>
+        </div>
+        <div class="b-card-form__field js-field">
+          <div class="b-card-form__input cardholder">
+            <input type="text" name="cardholder" data-type="cardholder" placeholder="Держатель карты" />
+          </div>
+        </div>
+        <div class="b-card-form__field js-field">
+          <div class="b-card-form__input email">
+            <input type="text" name="email" data-type="email" placeholder="E-mail" />
+          </div>
+        </div>
+        <div class="b-card-form__field js-field">
+          <div class="b-card-form__input phone">
+            <input type="text" name="phone" data-type="phone" placeholder="Телефон" />
+          </div>
+        </div>
+        <div class="b-card-form__field js-field">
+          <div class="b-card-form__input city">
+            <input type="text" name="city" data-type="city" placeholder="Город" />
+          </div>
+        </div>
+      </div>
+      <div class="b-card-form__btn">
+        <input class="e-btn" type="submit" value="Оплатить" />
+      </div>
+    </form>
+    <script src="/build/js/main.js"></script>
+  </body>
+</html>
+
