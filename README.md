@@ -1,10 +1,24 @@
 # Card JS
 
-## Старт работы
+## Начало работы
 
 ``` bash
 npm install
 npm run dev
+```
+
+## Поддержка сборки нескольких языков
+
+Если задать соответствующий словарь в папке [data](https://github.com/MaxFeskov/card-js/tree/master/src/data), то можно делать сборку для конкретного языка.
+
+Пример через gulp
+``` bash
+gulp --locale en
+```
+
+Пример через npm run
+``` bash
+npm run dev -- --locale en
 ```
 
 Остальные задачи описаны в файле [package.json](https://github.com/MaxFeskov/card-js/blob/master/package.json)
