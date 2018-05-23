@@ -6,7 +6,7 @@ mixin formField(fieldClass, fieldName)
       input(type="text" name=fieldName data-type=fieldClass placeholder=data("form.field." + fieldClass + ".placeholder"))/
 
 block content
-  +b.FORM.b-card-form.js-form(action="" method="POST")
+  +b.FORM.b-card-form.js-form(action="" method="GET")
     +e.title=data('form.title')
     +e.descr=data('form.descr')
     +e.field-list
