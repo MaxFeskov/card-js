@@ -588,11 +588,7 @@ const validationPreset = exports.validationPreset = {
         nDigit = parseInt(cDigit, 10);
 
         if (bEven) {
-          const doubleDigit = nDigit * 2;
-
-          if (doubleDigit > 9) {
-            nDigit -= 9;
-          }
+          if ((nDigit *= 2) > 9) nDigit -= 9;
         }
 
         nCheck += nDigit;
