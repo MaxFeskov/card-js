@@ -25,7 +25,7 @@ export const validationPreset = {
     }
 
     if (value !== '') {
-      if (valueRangeList.includes(value.length)) {
+      if (!valueRangeList.includes(value.length)) {
         return false;
       }
 
