@@ -13,6 +13,10 @@
   text-decoration: none;
   text-transform: uppercase;
 
+  &::-moz-focus-inner {
+    border: none;
+  }
+
   &:hover,
   &:focus {
     background: $clr-main;
