@@ -21,12 +21,10 @@ window.paymentSystemInfo = {};
 
 const forms = document.querySelectorAll(formSelector);
 
-for (let i = 0; i < forms.length; i += 1) {
-  const form = forms[i];
+forms.forEach(form => {
   const elements = form.querySelectorAll(fieldSelector);
 
-  for (let j = 0; j < elements.length; j += 1) {
-    const field = elements[j];
+  elements.forEach(field => {
     let input;
 
     if (field.tagName.toLowerCase() === 'input') {
@@ -56,13 +54,12 @@ for (let i = 0; i < forms.length; i += 1) {
         }
       });
     }
-  }
+  });
 
   form.addEventListener('submit', event => {
     let error = 0;
 
-    for (let j = 0; j < elements.length; j += 1) {
-      const field = elements[j];
+    elements.forEach(field => {
       let input;
 
       if (field.tagName.toLowerCase() === 'input') {
@@ -81,14 +78,14 @@ for (let i = 0; i < forms.length; i += 1) {
           error += 1;
         }
       }
-    }
+    });
 
     if (error) {
       event.preventDefault();
       event.stopPropagation();
     }
   });
-}
+});
 
 window.addEventListener('paymentSystemInfo', event => {
   const paymentSystemInfo = event.detail;
@@ -175,22 +172,19 @@ function prepareMaskArray(array) {
   const result = [];
   const patterns = Object.keys(maskPattern);
 
-  for (let i = 0; i < array.length; i += 1) {
-    const arrItem = array[i];
-
-    if (typeof arrItem === 'string') {
-      for (let j = 0; j < arrItem.length; j += 1) {
-        const symbol = arrItem[j];
-        if (patterns.indexOf(symbol) !== -1) {
+  array.forEach(item => {
+    if (typeof item === 'string') {
+      [...item].forEach(symbol => {
+        if (patterns.includes(symbol)) {
           result.push(maskPattern[symbol]);
         } else {
           result.push(symbol);
         }
-      }
+      });
     } else {
-      result.push(arrItem);
+      result.push(item);
     }
-  }
+  });
 
   return result;
 }
@@ -198,14 +192,14 @@ function prepareMaskArray(array) {
 const presetMask = exports.presetMask = {
   cardholder: {
     mask(rawValue) {
-      const correctionValue = rawValue.replace(/[^a-z ]/gi, '');
-      const resultArr = [];
+      const maskLength = rawValue.replace(/[^a-z ]/gi, '').length;
+      let stringMask = '';
 
-      if (correctionValue) {
-        resultArr.push(Array(correctionValue.length + 1).join('S'));
+      if (maskLength) {
+        stringMask = 'S'.repeat(maskLength);
       }
 
-      return prepareMaskArray(resultArr);
+      return prepareMaskArray([stringMask]);
     },
     pipe(conformedValue) {
       return { value: conformedValue.toUpperCase() };
@@ -216,47 +210,48 @@ const presetMask = exports.presetMask = {
 
   cardnumber: {
     mask(rawValue) {
-      const correctionValue = rawValue.replace(/[^\d]/gi, '');
-      const paymentSystemInfo = (0, _paymentSystem.getPaymentSystemInfoByPan)(correctionValue);
-      const inputCardLength = correctionValue.length;
+      const cardPan = rawValue.replace(/ /g, '').split('\u2000')[0];
+      const paymentSystemInfo = (0, _paymentSystem.getPaymentSystemInfoByPan)(cardPan);
+      const inputCardLength = rawValue.replace(/[^0-9]/g, '').length;
       let maskNumLength = 19;
+      let stringMask = '';
 
       if (paymentSystemInfo) {
-        const cardLengthList = paymentSystemInfo.cardLength;
+        const cardLengthList = paymentSystemInfo.cardLength.filter(key => key >= inputCardLength);
 
-        for (let i = cardLengthList.length - 1; i >= 0; i -= 1) {
-          const cardLengthSize = cardLengthList[i];
-
-          if (cardLengthSize >= inputCardLength) {
-            maskNumLength = cardLengthSize;
-          }
-        }
-
-        if (cardLengthList.indexOf(maskNumLength) === -1) {
-          maskNumLength = cardLengthList[cardLengthList.length - 1];
+        if (cardLengthList && cardLengthList.length) {
+          maskNumLength = Math.min(...cardLengthList);
         }
       }
 
       switch (maskNumLength) {
         case 14:
-          return prepareMaskArray(['#### ##### #####']);
+          stringMask = '#### ##### #####';
+          break;
 
         case 15:
-          return prepareMaskArray(['##### ##### #####']);
+          stringMask = '##### ##### #####';
+          break;
 
         case 16:
-          return prepareMaskArray(['#### #### #### ####']);
+          stringMask = '#### #### #### ####';
+          break;
 
         case 17:
-          return prepareMaskArray(['#### #### #### #####']);
+          stringMask = '#### #### #### #####';
+          break;
 
         case 18:
-          return prepareMaskArray(['#### #### #### #### ##']);
+          stringMask = '#### #### #### #### ##';
+          break;
 
         default:
-          return prepareMaskArray(['#### #### #### #### ###']);
+          stringMask = '#### #### #### #### ###';
       }
+
+      return prepareMaskArray([stringMask]);
     },
+
     pipe: null,
     guide: true,
     placeholderChar: '\u2000'
@@ -264,14 +259,14 @@ const presetMask = exports.presetMask = {
 
   city: {
     mask(rawValue) {
-      const correctionValue = rawValue.replace(/[^-a-zA-Zа-яА-Я0-9 ]/gi, '');
-      const resultArr = [];
+      const maskLength = rawValue.replace(/[^-a-zA-Zа-яА-Я0-9 ]/gi, '').length;
+      let stringMask = '';
 
-      if (correctionValue) {
-        resultArr.push(Array(correctionValue.length + 1).join('W'));
+      if (maskLength) {
+        stringMask = 'W'.repeat(maskLength);
       }
 
-      return prepareMaskArray(resultArr);
+      return prepareMaskArray([stringMask]);
     },
     pipe: null,
     guide: true,
@@ -280,7 +275,7 @@ const presetMask = exports.presetMask = {
 
   cvc: {
     mask() {
-      let valueRangeList = [3];
+      let valueRangeList = [4];
 
       if (window.paymentSystemInfo.cvcLength) {
         valueRangeList = window.paymentSystemInfo.cvcLength;
@@ -288,13 +283,9 @@ const presetMask = exports.presetMask = {
 
       const maskNumLength = valueRangeList[valueRangeList.length - 1];
 
-      switch (maskNumLength) {
-        case 3:
-          return prepareMaskArray(['###']);
+      const stringMask = '#'.repeat(maskNumLength);
 
-        default:
-          return prepareMaskArray(['####']);
-      }
+      return prepareMaskArray([stringMask]);
     },
     pipe: null,
     guide: true,
@@ -325,15 +316,17 @@ const presetMask = exports.presetMask = {
 
   phone: {
     mask(rawValue) {
+      let arrayMask = ['+7 (', /[1-9]/, '##) ###-##-##'];
       const startSymbolPosition = rawValue.search(/[+1-9]/);
       const startSymbol = rawValue[startSymbolPosition];
 
       if (startSymbol === '8') {
-        return prepareMaskArray(['8 (', /[1-9]/, '##) ###-##-##']);
+        arrayMask = ['8 (', /[1-9]/, '##) ###-##-##'];
       } else if (startSymbol === '+') {
-        return prepareMaskArray(['+', /[1-79]/, ' (', /[1-9]/, '##) ###-##-##']);
+        arrayMask = ['+', /[1-79]/, ' (', /[1-9]/, '##) ###-##-##'];
       }
-      return prepareMaskArray(['+7 (', /[1-9]/, '##) ###-##-##']);
+
+      return prepareMaskArray(arrayMask);
     },
     pipe: null,
     guide: true,
@@ -341,16 +334,20 @@ const presetMask = exports.presetMask = {
   }
 };
 
-function setMask(element, maskName) {
+function setMask(inputElement, maskName) {
   const presetMaskKeys = Object.keys(presetMask);
 
-  if (presetMaskKeys.indexOf(maskName) !== -1) {
+  if (presetMaskKeys.includes(maskName)) {
+    const {
+      mask, pipe, guide, placeholderChar
+    } = presetMask[maskName];
+
     vanillaTextMask.maskInput({
-      inputElement: element,
-      mask: presetMask[maskName].mask,
-      pipe: presetMask[maskName].pipe,
-      guide: presetMask[maskName].guide,
-      placeholderChar: presetMask[maskName].placeholderChar
+      inputElement,
+      mask,
+      pipe,
+      guide,
+      placeholderChar
     });
   }
 }
@@ -575,7 +572,7 @@ const validationPreset = exports.validationPreset = {
     }
 
     if (value !== '') {
-      if (valueRangeList.indexOf(value.length) === -1) {
+      if (valueRangeList.includes(value.length)) {
         return false;
       }
 
@@ -708,7 +705,7 @@ const validationPreset = exports.validationPreset = {
 function isValid(value, valueType, isRequired) {
   const validationPresetKeys = Object.keys(validationPreset);
 
-  if (validationPresetKeys.indexOf(valueType) !== -1) {
+  if (validationPresetKeys.includes(valueType)) {
     return validationPreset[valueType](value, isRequired);
   }
 

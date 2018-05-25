@@ -8,12 +8,10 @@ window.paymentSystemInfo = {};
 
 const forms = document.querySelectorAll(formSelector);
 
-for (let i = 0; i < forms.length; i += 1) {
-  const form = forms[i];
+forms.forEach((form) => {
   const elements = form.querySelectorAll(fieldSelector);
 
-  for (let j = 0; j < elements.length; j += 1) {
-    const field = elements[j];
+  elements.forEach((field) => {
     let input;
 
     if (field.tagName.toLowerCase() === 'input') {
@@ -43,13 +41,12 @@ for (let i = 0; i < forms.length; i += 1) {
         }
       });
     }
-  }
+  });
 
   form.addEventListener('submit', (event) => {
     let error = 0;
 
-    for (let j = 0; j < elements.length; j += 1) {
-      const field = elements[j];
+    elements.forEach((field) => {
       let input;
 
       if (field.tagName.toLowerCase() === 'input') {
@@ -68,14 +65,14 @@ for (let i = 0; i < forms.length; i += 1) {
           error += 1;
         }
       }
-    }
+    });
 
     if (error) {
       event.preventDefault();
       event.stopPropagation();
     }
   });
-}
+});
 
 window.addEventListener('paymentSystemInfo', (event) => {
   const paymentSystemInfo = event.detail;

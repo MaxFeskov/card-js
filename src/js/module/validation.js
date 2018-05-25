@@ -25,7 +25,7 @@ export const validationPreset = {
     }
 
     if (value !== '') {
-      if (valueRangeList.indexOf(value.length) === -1) {
+      if (valueRangeList.includes(value.length)) {
         return false;
       }
 
@@ -165,7 +165,7 @@ export const validationPreset = {
 export function isValid(value, valueType, isRequired) {
   const validationPresetKeys = Object.keys(validationPreset);
 
-  if (validationPresetKeys.indexOf(valueType) !== -1) {
+  if (validationPresetKeys.includes(valueType)) {
     return validationPreset[valueType](value, isRequired);
   }
 
