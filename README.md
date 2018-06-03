@@ -14,18 +14,19 @@ npm run dev
 Если задать соответствующий словарь в папке [data](https://github.com/MaxFeskov/card-js/tree/master/src/data), то можно делать сборку для конкретного языка.
 
 Пример через gulp
+
 ``` bash
 gulp --locale en
 ```
 
 Пример через npm run
+
 ``` bash
 npm run dev -- --locale en
 ```
 
-
-
 ## И еще немного текста
+
 Данный проект пока не претендует на статус полноценного продукта. Скорее это некий шаблон, который еще будет дорабатываться.
 
 [Пример](https://maxfeskov.github.io/card-js/)

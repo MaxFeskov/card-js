@@ -18,7 +18,7 @@ export function prepareMaskArray(array) {
     if (typeof item === 'string') {
       [...item].forEach((symbol) => {
         if (patterns.includes(symbol)) {
-          result.push(maskPattern[symbol]);
+          result.push(maskPattern[`${symbol}`]);
         } else {
           result.push(symbol);
         }
@@ -160,7 +160,7 @@ export const presetMask = {
     mask(rawValue) {
       let arrayMask = ['+7 (', /[1-9]/, '##) ###-##-##'];
       const startSymbolPosition = rawValue.search(/[+1-9]/);
-      const startSymbol = rawValue[startSymbolPosition];
+      const startSymbol = rawValue[Number(startSymbolPosition)];
 
       if (startSymbol === '8') {
         arrayMask = ['8 (', /[1-9]/, '##) ###-##-##'];
@@ -182,7 +182,7 @@ export function setMask(inputElement, maskName) {
   if (presetMaskKeys.includes(maskName)) {
     const {
       mask, pipe, guide, placeholderChar,
-    } = presetMask[maskName];
+    } = presetMask[`${maskName}`];
 
     vanillaTextMask.maskInput({
       inputElement,

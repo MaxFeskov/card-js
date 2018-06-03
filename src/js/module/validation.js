@@ -38,7 +38,10 @@ export const validationPreset = {
         nDigit = parseInt(cDigit, 10);
 
         if (bEven) {
-          if ((nDigit *= 2) > 9) nDigit -= 9;
+          nDigit *= 2;
+          if (nDigit > 9) {
+            nDigit -= 9;
+          }
         }
 
         nCheck += nDigit;
@@ -166,7 +169,7 @@ export function isValid(value, valueType, isRequired) {
   const validationPresetKeys = Object.keys(validationPreset);
 
   if (validationPresetKeys.includes(valueType)) {
-    return validationPreset[valueType](value, isRequired);
+    return validationPreset[`${valueType}`](value, isRequired);
   }
 
   return true;

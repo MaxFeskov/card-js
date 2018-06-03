@@ -4,6 +4,7 @@
       "targets": {
         "node": "current"
       }
-    }]
+    }],
+    "babel-preset-es2015-ie"
   ]
 }
