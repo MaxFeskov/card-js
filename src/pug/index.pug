@@ -1,24 +1,24 @@
 extends _layout.pug
 
-mixin formField(fieldClass, fieldName)
+mixin formField(fieldClass, fieldName, fieldType = 'text')
   +e.field.js-field
     +e.input(class=fieldClass)
-      input(type="text" name=fieldName data-type=fieldClass placeholder=data("form.field." + fieldClass + ".placeholder"))/
+      input(reqiured type=fieldType name=fieldName data-type=fieldClass placeholder=data("form.field." + fieldClass + ".placeholder"))/
 
 block content
-  +b.FORM.b-card-form.js-form(action="" method="GET")
+  +b.FORM.b-card-form.js-form(action="" method="GET" novalidate)
     +e.title=data('form.title')
     +e.descr=data('form.descr')
     +e.field-list
-      +formField('cardnumber', 'cardnumber')
+      +formField('cardnumber', 'cardnumber', 'tel')
 
       +e.field-group
-        +formField('expdate', 'expdate')
-        +formField('cvc', 'cvc')
+        +formField('expdate', 'expdate', 'tel')
+        +formField('cvc', 'cvc', 'tel')
 
       +formField('cardholder', 'cardholder')
       +formField('email', 'email')
-      +formField('phone', 'phone')
+      +formField('phone', 'phone', 'tel')
       +formField('city', 'city')
 
     +e.btn

@@ -30,45 +30,45 @@
     <link rel="stylesheet" href="build/css/style.min.css" />
   </head>
   <body>
-    <form class="b-card-form js-form" action="" method="GET">
+    <form class="b-card-form js-form" action="" method="GET" novalidate="novalidate">
       <div class="b-card-form__title">Card JS</div>
       <div class="b-card-form__descr">Пример платежной формы</div>
       <div class="b-card-form__field-list">
         <div class="b-card-form__field js-field">
           <div class="b-card-form__input cardnumber">
-            <input type="text" name="cardnumber" data-type="cardnumber" placeholder="Номер карты" />
+            <input reqiured="reqiured" type="tel" name="cardnumber" data-type="cardnumber" placeholder="Номер карты" />
           </div>
         </div>
         <div class="b-card-form__field-group">
           <div class="b-card-form__field js-field">
             <div class="b-card-form__input expdate">
-              <input type="text" name="expdate" data-type="expdate" placeholder="ММ / ГГ" />
+              <input reqiured="reqiured" type="tel" name="expdate" data-type="expdate" placeholder="ММ / ГГ" />
             </div>
           </div>
           <div class="b-card-form__field js-field">
             <div class="b-card-form__input cvc">
-              <input type="text" name="cvc" data-type="cvc" placeholder="CVC" />
+              <input reqiured="reqiured" type="tel" name="cvc" data-type="cvc" placeholder="CVC" />
             </div>
           </div>
         </div>
         <div class="b-card-form__field js-field">
           <div class="b-card-form__input cardholder">
-            <input type="text" name="cardholder" data-type="cardholder" placeholder="Держатель карты" />
+            <input reqiured="reqiured" type="text" name="cardholder" data-type="cardholder" placeholder="Держатель карты" />
           </div>
         </div>
         <div class="b-card-form__field js-field">
           <div class="b-card-form__input email">
-            <input type="text" name="email" data-type="email" placeholder="E-mail" />
+            <input reqiured="reqiured" type="text" name="email" data-type="email" placeholder="E-mail" />
           </div>
         </div>
         <div class="b-card-form__field js-field">
           <div class="b-card-form__input phone">
-            <input type="text" name="phone" data-type="phone" placeholder="Телефон" />
+            <input reqiured="reqiured" type="tel" name="phone" data-type="phone" placeholder="Телефон" />
           </div>
         </div>
         <div class="b-card-form__field js-field">
           <div class="b-card-form__input city">
-            <input type="text" name="city" data-type="city" placeholder="Город" />
+            <input reqiured="reqiured" type="text" name="city" data-type="city" placeholder="Город" />
           </div>
         </div>
       </div>
