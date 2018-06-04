@@ -2,7 +2,7 @@
   "form.title": "Card JS",
   "form.descr": "Payments form example",
   "form.field.cardnumber.placeholder": "Card number",
-  "form.field.expdate.placeholder": "MM / YY",
+  "form.field.expdate.placeholder": "MM/YYYY",
   "form.field.cvv2.placeholder": "CVV2",
   "form.field.cardholder.placeholder": "Cardholder",
   "form.field.email.placeholder": "E-mail",

@@ -7876,10 +7876,10 @@ var presetMask = exports.presetMask = {
 
   expdate: {
     mask: function mask() {
-      return prepareMaskArray(['## / ##']);
+      return prepareMaskArray(['##/20##']);
     },
     pipe: function pipe(conformedValue) {
-      var pipeFunction = (0, _createAutoCorrectedDatePipe2.default)('mm / yy');
+      var pipeFunction = (0, _createAutoCorrectedDatePipe2.default)('mm/yyyy');
 
       return pipeFunction(conformedValue);
     },

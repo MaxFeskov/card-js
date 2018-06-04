@@ -2,7 +2,7 @@
   "form.title": "Card JS",
   "form.descr": "Пример платежной формы",
   "form.field.cardnumber.placeholder": "Номер карты",
-  "form.field.expdate.placeholder": "MM / YY",
+  "form.field.expdate.placeholder": "ММ/ГГГГ",
   "form.field.cvv2.placeholder": "CVV2",
   "form.field.cardholder.placeholder": "Держатель карты",
   "form.field.email.placeholder": "E-mail",
