@@ -115,7 +115,7 @@ export const presetMask = {
     placeholderChar: '\u2000',
   },
 
-  cvc2: {
+  cvv2: {
     mask() {
       let valueRangeList = [4];
 

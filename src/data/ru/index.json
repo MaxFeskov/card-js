@@ -3,7 +3,7 @@
   "form.descr": "Пример платежной формы",
   "form.field.cardnumber.placeholder": "Номер карты",
   "form.field.expdate.placeholder": "ММ / ГГ",
-  "form.field.cvc2.placeholder": "CVC",
+  "form.field.cvv2.placeholder": "CVV2",
   "form.field.cardholder.placeholder": "Держатель карты",
   "form.field.email.placeholder": "E-mail",
   "form.field.phone.placeholder": "Телефон",

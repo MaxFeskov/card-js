@@ -73,7 +73,7 @@ export const validationPreset = {
     return true;
   },
 
-  cvc2(rawValue, isRequired) {
+  cvv2(rawValue, isRequired) {
     const value = rawValue.trim();
 
     if (value !== '') {
