@@ -7844,7 +7844,7 @@ var presetMask = exports.presetMask = {
     placeholderChar: '\u2000'
   },
 
-  cvc: {
+  cvc2: {
     mask: function mask() {
       var valueRangeList = [4];
 
@@ -8197,7 +8197,7 @@ var validationPreset = exports.validationPreset = {
 
     return true;
   },
-  cvc: function cvc(rawValue, isRequired) {
+  cvc2: function cvc2(rawValue, isRequired) {
     var value = rawValue.trim();
 
     if (value !== '') {
