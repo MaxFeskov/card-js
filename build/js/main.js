@@ -7876,10 +7876,10 @@ var presetMask = exports.presetMask = {
 
   expdate: {
     mask: function mask() {
-      return prepareMaskArray(['##/20##']);
+      return prepareMaskArray(['## / 20##']);
     },
     pipe: function pipe(conformedValue) {
-      var pipeFunction = (0, _createAutoCorrectedDatePipe2.default)('mm/yyyy');
+      var pipeFunction = (0, _createAutoCorrectedDatePipe2.default)('mm / yyyy');
 
       return pipeFunction(conformedValue);
     },
@@ -8248,7 +8248,7 @@ var validationPreset = exports.validationPreset = {
         return false;
       }
 
-      var expDate = (0, _dayjs2.default)('20' + year + '-' + month + '-01');
+      var expDate = (0, _dayjs2.default)(year + '-' + month + '-01');
 
       if (expDate.isAfter(minDate) && expDate.isBefore(maxDate)) {
         return true;
@@ -8290,3 +8290,4 @@ function isValid(value, valueType, isRequired) {
 }
 
 },{"dayjs":326}]},{},[331]);
+

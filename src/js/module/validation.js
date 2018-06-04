@@ -133,7 +133,7 @@ export const validationPreset = {
         return false;
       }
 
-      const expDate = dayjs(`20${year}-${month}-01`);
+      const expDate = dayjs(`${year}-${month}-01`);
 
       if (expDate.isAfter(minDate) && expDate.isBefore(maxDate)) {
         return true;

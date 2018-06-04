@@ -30,7 +30,7 @@
 
   &__input {
     border: 1px solid darken($clr-add, 10%);
-    padding: 5px 10px 5px 40px;
+    padding: 5px 7px 5px 35px;
     border-radius: 3px;
     background: #fff;
     position: relative;
@@ -53,7 +53,7 @@
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 44px;
+      width: 35px;
       text-align: center;
       color: $clr-main;
       font-size: 16px;
@@ -107,7 +107,11 @@
       }
     }
 
-    &.zip, &.region, &.country, &.city, &.address {
+    &.zip,
+    &.region,
+    &.country,
+    &.city,
+    &.address {
       &::before {
         @include addFontIcon("location");
       }

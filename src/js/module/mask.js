@@ -145,10 +145,10 @@ export const presetMask = {
 
   expdate: {
     mask() {
-      return prepareMaskArray(['##/20##']);
+      return prepareMaskArray(['## / 20##']);
     },
     pipe(conformedValue) {
-      const pipeFunction = createAutoCorrectedDatePipe('mm/yyyy');
+      const pipeFunction = createAutoCorrectedDatePipe('mm / yyyy');
 
       return pipeFunction(conformedValue);
     },

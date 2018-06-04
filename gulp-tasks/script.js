@@ -29,6 +29,8 @@ gulp.task('build:script', () =>
           .on('error', global.errorHandler)
           .pipe(source(fileNameForSave))
           .pipe(buffer())
+          .pipe($.eol(path.src.lineending))
+          .pipe($.insert.append(path.src.lineending))
         // .pipe($.uglify())
           .pipe(gulp.dest(path.build.script))
       );
@@ -49,6 +51,8 @@ gulp.task('dev:script', () =>
         .on('error', global.errorHandler)
         .pipe(source(fileNameForSave))
         .pipe(buffer())
+        .pipe($.eol(path.src.lineending))
+        .pipe($.insert.append(path.src.lineending))
         .pipe($.sourcemaps.write())
         .pipe(gulp.dest(path.build.script));
     })));
