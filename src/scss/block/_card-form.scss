@@ -89,7 +89,7 @@
       }
     }
 
-    &.nameoncard {
+    &.cardholder {
       &::before {
         @include addFontIcon("cardholder");
       }
