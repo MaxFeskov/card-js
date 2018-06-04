@@ -32,7 +32,7 @@ export function prepareMaskArray(array) {
 }
 
 export const presetMask = {
-  cardholder: {
+  nameoncard: {
     mask(rawValue) {
       const maskLength = rawValue.replace(/[^a-z ]/gi, '').length;
       let stringMask = '';

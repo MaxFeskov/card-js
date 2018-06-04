@@ -4,7 +4,7 @@
   "form.field.cardnumber.placeholder": "Card number",
   "form.field.expdate.placeholder": "MM / YY",
   "form.field.cvv2.placeholder": "CVV2",
-  "form.field.cardholder.placeholder": "Cardholder",
+  "form.field.nameoncard.placeholder": "Cardholder",
   "form.field.email.placeholder": "E-mail",
   "form.field.phone.placeholder": "Phone",
   "form.field.city.placeholder": "City",

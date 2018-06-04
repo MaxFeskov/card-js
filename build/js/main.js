@@ -7756,7 +7756,7 @@ function prepareMaskArray(array) {
 }
 
 var presetMask = exports.presetMask = {
-  cardholder: {
+  nameoncard: {
     mask: function mask(rawValue) {
       var maskLength = rawValue.replace(/[^a-z ]/gi, '').length;
       var stringMask = '';
@@ -8128,7 +8128,7 @@ var _dayjs2 = _interopRequireDefault(_dayjs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var validationPreset = exports.validationPreset = {
-  cardholder: function cardholder(rawValue, isRequired) {
+  nameoncard: function nameoncard(rawValue, isRequired) {
     var value = rawValue.trim();
 
     if (value !== '') {

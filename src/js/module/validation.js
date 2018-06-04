@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 export const validationPreset = {
-  cardholder(rawValue, isRequired) {
+  nameoncard(rawValue, isRequired) {
     const value = rawValue.trim();
 
     if (value !== '') {
