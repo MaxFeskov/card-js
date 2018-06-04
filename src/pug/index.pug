@@ -16,7 +16,7 @@ block content
         +formField('expdate', 'expdate', 'tel')(autocomplete="cc-exp")
         +formField('cvv2', 'cvv2', 'tel')(autocomplete="cc-csc")
 
-      +formField('cardholder', 'cardholder')(autocomplete="cc-name")
+      +formField('cardholder', 'cardholdername')(autocomplete="cc-name")
 
       +formField('zip', 'zip')(autocomplete="postal-code")
       +formField('country', 'country')(autocomplete="country-name")
@@ -25,8 +25,6 @@ block content
 
       +formField('email', 'email')(autocomplete="email")
       +formField('phone', 'phone', 'tel')(autocomplete="tel")
-
-
 
     +e.btn
       input.e-btn(type="submit" value=data("form.btn.submit.val"))/
