@@ -52,7 +52,7 @@ export const presetMask = {
 
   cardnumber: {
     mask(rawValue) {
-      const cardPan = rawValue.replace(/ /g, '').split('\u2000')[0];
+      const cardPan = rawValue.replace(/ /g, '').split('X')[0];
       const paymentSystemInfo = getPaymentSystemInfoByPan(cardPan);
       const inputCardLength = rawValue.replace(/[^0-9]/g, '').length;
       let maskNumLength = 19;
@@ -96,7 +96,7 @@ export const presetMask = {
 
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000',
+    placeholderChar: 'X',
   },
 
   city: {
@@ -131,7 +131,7 @@ export const presetMask = {
     },
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000',
+    placeholderChar: 'X',
   },
 
   email: {
@@ -140,7 +140,7 @@ export const presetMask = {
     },
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000',
+    placeholderChar: 'X',
   },
 
   expdate: {
@@ -153,7 +153,7 @@ export const presetMask = {
       return pipeFunction(conformedValue);
     },
     guide: true,
-    placeholderChar: '\u2000',
+    placeholderChar: 'X',
   },
 
   phone: {
@@ -172,7 +172,7 @@ export const presetMask = {
     },
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000',
+    placeholderChar: 'X',
   },
 };
 

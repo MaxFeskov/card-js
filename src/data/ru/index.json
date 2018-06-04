@@ -8,5 +8,10 @@
   "form.field.email.placeholder": "E-mail",
   "form.field.phone.placeholder": "Телефон",
   "form.field.city.placeholder": "Город",
+  "form.field.zip.placeholder": "Индекс",
+  "form.field.region.placeholder": "Регион",
+  "form.field.country.placeholder": "Страна",
+  "form.field.address.placeholder": "Адрес",
+
   "form.btn.submit.val": "Оплатить"
 }

@@ -83,7 +83,7 @@
       }
     }
 
-    &.cvc {
+    &.cvv2 {
       &::before {
         @include addFontIcon("cvc");
       }
@@ -107,9 +107,9 @@
       }
     }
 
-    &.city {
+    &.zip, &.region, &.country, &.city, &.address {
       &::before {
-        @include addFontIcon("city");
+        @include addFontIcon("location");
       }
     }
 

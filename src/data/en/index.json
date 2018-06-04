@@ -8,5 +8,10 @@
   "form.field.email.placeholder": "E-mail",
   "form.field.phone.placeholder": "Phone",
   "form.field.city.placeholder": "City",
+  "form.field.zip.placeholder": "Zip",
+  "form.field.region.placeholder": "Region",
+  "form.field.country.placeholder": "Country",
+  "form.field.address.placeholder": "Address",
+
   "form.btn.submit.val": "Pay now"
 }

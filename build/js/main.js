@@ -7777,7 +7777,7 @@ var presetMask = exports.presetMask = {
 
   cardnumber: {
     mask: function mask(rawValue) {
-      var cardPan = rawValue.replace(/ /g, '').split('\u2000')[0];
+      var cardPan = rawValue.replace(/ /g, '').split('X')[0];
       var paymentSystemInfo = (0, _paymentSystem.getPaymentSystemInfoByPan)(cardPan);
       var inputCardLength = rawValue.replace(/[^0-9]/g, '').length;
       var maskNumLength = 19;
@@ -7824,7 +7824,7 @@ var presetMask = exports.presetMask = {
 
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000'
+    placeholderChar: 'X'
   },
 
   city: {
@@ -7861,7 +7861,7 @@ var presetMask = exports.presetMask = {
 
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000'
+    placeholderChar: 'X'
   },
 
   email: {
@@ -7871,7 +7871,7 @@ var presetMask = exports.presetMask = {
 
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000'
+    placeholderChar: 'X'
   },
 
   expdate: {
@@ -7885,7 +7885,7 @@ var presetMask = exports.presetMask = {
     },
 
     guide: true,
-    placeholderChar: '\u2000'
+    placeholderChar: 'X'
   },
 
   phone: {
@@ -7905,7 +7905,7 @@ var presetMask = exports.presetMask = {
 
     pipe: null,
     guide: true,
-    placeholderChar: '\u2000'
+    placeholderChar: 'X'
   }
 };
 
