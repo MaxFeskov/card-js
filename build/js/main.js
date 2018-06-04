@@ -7875,7 +7875,15 @@ var presetMask = exports.presetMask = {
   },
 
   expdate: {
-    mask: function mask() {
+    mask: function mask(conformedValue) {
+      var year = parseInt(String(conformedValue.split('/')[1]).trim(), 10) || 0;
+
+      if (year >= 2000) {
+        return prepareMaskArray(['## / ####']);
+      } else if (year > 20 && year <= 29) {
+        return prepareMaskArray(['## / 20' + year]);
+      }
+
       return prepareMaskArray(['## / 20##']);
     },
     pipe: function pipe(conformedValue) {
