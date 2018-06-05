@@ -8201,6 +8201,20 @@ function isValidEmail(value) {
 }
 
 var validationPreset = exports.validationPreset = {
+  address: function address(rawValue, isRequired) {
+    var value = rawValue.trim();
+
+    if (value !== '') {
+      var rule = /.+?/;
+      return rule.test(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
+  },
   cardholder: function cardholder(rawValue, isRequired) {
     var value = rawValue.trim();
 
@@ -8270,6 +8284,20 @@ var validationPreset = exports.validationPreset = {
 
     return true;
   },
+  country: function country(rawValue, isRequired) {
+    var value = rawValue.trim();
+
+    if (value !== '') {
+      var rule = /.+?/;
+      return rule.test(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
+  },
   cvv2: function cvv2(rawValue, isRequired) {
     var value = rawValue.trim();
 
@@ -8284,10 +8312,18 @@ var validationPreset = exports.validationPreset = {
 
     return true;
   },
-  email: function email(rawValue) {
+  email: function email(rawValue, isRequired) {
     var value = rawValue.trim();
 
-    return isValidEmail(value);
+    if (value !== '') {
+      return isValidEmail(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
   },
   expdate: function expdate(rawValue, isRequired) {
     var value = rawValue.trim();
@@ -8332,6 +8368,20 @@ var validationPreset = exports.validationPreset = {
 
     if (value !== '') {
       var rule = /[0-9]{9,12}/;
+      return rule.test(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
+  },
+  zip: function zip(rawValue, isRequired) {
+    var value = rawValue.trim();
+
+    if (value !== '') {
+      var rule = /[a-zA-Z0-9]{5,6}/;
       return rule.test(value);
     }
 

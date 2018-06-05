@@ -9,6 +9,21 @@ export function isValidEmail(value) {
 }
 
 export const validationPreset = {
+  address(rawValue, isRequired) {
+    const value = rawValue.trim();
+
+    if (value !== '') {
+      const rule = /.+?/;
+      return rule.test(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
+  },
+
   cardholder(rawValue, isRequired) {
     const value = rawValue.trim();
 
@@ -81,6 +96,21 @@ export const validationPreset = {
     return true;
   },
 
+  country(rawValue, isRequired) {
+    const value = rawValue.trim();
+
+    if (value !== '') {
+      const rule = /.+?/;
+      return rule.test(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
+  },
+
   cvv2(rawValue, isRequired) {
     const value = rawValue.trim();
 
@@ -96,10 +126,18 @@ export const validationPreset = {
     return true;
   },
 
-  email(rawValue) {
+  email(rawValue, isRequired) {
     const value = rawValue.trim();
 
-    return isValidEmail(value);
+    if (value !== '') {
+      return isValidEmail(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
   },
 
   expdate(rawValue, isRequired) {
@@ -153,6 +191,21 @@ export const validationPreset = {
 
     if (value !== '') {
       const rule = /[0-9]{9,12}/;
+      return rule.test(value);
+    }
+
+    if (isRequired) {
+      return false;
+    }
+
+    return true;
+  },
+
+  zip(rawValue, isRequired) {
+    const value = rawValue.trim();
+
+    if (value !== '') {
+      const rule = /[a-zA-Z0-9]{5,6}/;
       return rule.test(value);
     }
 
