@@ -7,7 +7,9 @@ import { getPaymentSystemInfoByPan } from './paymentSystem';
 export const maskPattern = {
   '#': /\d/,
   S: /[a-zA-Z ]/,
+  X: /[a-zA-Z0-9]/,
   W: /[-a-zA-Zа-я-А-Я0-9 ]/,
+  Z: /[-a-zA-Zа-я-А-Я0-9., ]/,
 };
 
 export function prepareMaskArray(array) {
@@ -32,6 +34,22 @@ export function prepareMaskArray(array) {
 }
 
 export const presetMask = {
+  address: {
+    mask(rawValue) {
+      const maskLength = rawValue.replace(/[^-a-zA-Zа-я-А-Я0-9., ]/gi, '').length;
+      let stringMask = '';
+
+      if (maskLength) {
+        stringMask = 'Z'.repeat(maskLength);
+      }
+
+      return prepareMaskArray([stringMask]);
+    },
+    pipe: null,
+    guide: true,
+    placeholderChar: '\u2000',
+  },
+
   cardholder: {
     mask(rawValue) {
       const maskLength = rawValue.replace(/[^a-z ]/gi, '').length;
@@ -115,6 +133,22 @@ export const presetMask = {
     placeholderChar: '\u2000',
   },
 
+  country: {
+    mask(rawValue) {
+      const maskLength = rawValue.replace(/[^-a-zA-Zа-яА-Я0-9 ]/gi, '').length;
+      let stringMask = '';
+
+      if (maskLength) {
+        stringMask = 'W'.repeat(maskLength);
+      }
+
+      return prepareMaskArray([stringMask]);
+    },
+    pipe: null,
+    guide: true,
+    placeholderChar: '\u2000',
+  },
+
   cvv2: {
     mask() {
       let valueRangeList = [4];
@@ -181,6 +215,26 @@ export const presetMask = {
     pipe: null,
     guide: true,
     placeholderChar: 'X',
+  },
+
+  zip: {
+    mask(rawValue) {
+      const maskLength = rawValue.replace(/[^a-z0-9]/gi, '').length;
+      let stringMask = '';
+
+      if (maskLength < 6) {
+        stringMask = 'X'.repeat(maskLength);
+      } else {
+        stringMask = 'X'.repeat(6);
+      }
+
+      return prepareMaskArray([stringMask]);
+    },
+    pipe(conformedValue) {
+      return { value: conformedValue.toUpperCase() };
+    },
+    guide: true,
+    placeholderChar: '\u2000',
   },
 };
 

@@ -7568,8 +7568,8 @@ var _validation = require('./module/validation');
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = function (callback, thisArg) {
     thisArg = thisArg || window;
-    for (var i = 0; i < this.length; i++) {
-      callback.call(thisArg, this[i], i, this);
+    for (var i = 0; i < this.length; i += 1) {
+      callback.call(thisArg, this[Number(i)], i, this);
     }
   };
 }
@@ -7652,8 +7652,7 @@ window.addEventListener('paymentSystemInfo', function (event) {
 
   var name = paymentSystemInfo.name;
 
-
-  console.log(name);
+  // console.log(name);
 
   if (window.paymentSystemInfo.name !== name) {
     window.paymentSystemInfo = paymentSystemInfo;
@@ -7731,7 +7730,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var maskPattern = exports.maskPattern = {
   '#': /\d/,
   S: /[a-zA-Z ]/,
-  W: /[-a-zA-Zа-я-А-Я0-9 ]/
+  X: /[a-zA-Z0-9]/,
+  W: /[-a-zA-Zа-я-А-Я0-9 ]/,
+  Z: /[-a-zA-Zа-я-А-Я0-9., ]/
 };
 
 function prepareMaskArray(array) {
@@ -7756,6 +7757,23 @@ function prepareMaskArray(array) {
 }
 
 var presetMask = exports.presetMask = {
+  address: {
+    mask: function mask(rawValue) {
+      var maskLength = rawValue.replace(/[^-a-zA-Zа-я-А-Я0-9., ]/gi, '').length;
+      var stringMask = '';
+
+      if (maskLength) {
+        stringMask = 'Z'.repeat(maskLength);
+      }
+
+      return prepareMaskArray([stringMask]);
+    },
+
+    pipe: null,
+    guide: true,
+    placeholderChar: '\u2000'
+  },
+
   cardholder: {
     mask: function mask(rawValue) {
       var maskLength = rawValue.replace(/[^a-z ]/gi, '').length;
@@ -7844,6 +7862,23 @@ var presetMask = exports.presetMask = {
     placeholderChar: '\u2000'
   },
 
+  country: {
+    mask: function mask(rawValue) {
+      var maskLength = rawValue.replace(/[^-a-zA-Zа-яА-Я0-9 ]/gi, '').length;
+      var stringMask = '';
+
+      if (maskLength) {
+        stringMask = 'W'.repeat(maskLength);
+      }
+
+      return prepareMaskArray([stringMask]);
+    },
+
+    pipe: null,
+    guide: true,
+    placeholderChar: '\u2000'
+  },
+
   cvv2: {
     mask: function mask() {
       var valueRangeList = [4];
@@ -7914,6 +7949,27 @@ var presetMask = exports.presetMask = {
     pipe: null,
     guide: true,
     placeholderChar: 'X'
+  },
+
+  zip: {
+    mask: function mask(rawValue) {
+      var maskLength = rawValue.replace(/[^a-z0-9]/gi, '').length;
+      var stringMask = '';
+
+      if (maskLength < 6) {
+        stringMask = 'X'.repeat(maskLength);
+      } else {
+        stringMask = 'X'.repeat(6);
+      }
+
+      return prepareMaskArray([stringMask]);
+    },
+    pipe: function pipe(conformedValue) {
+      return { value: conformedValue.toUpperCase() };
+    },
+
+    guide: true,
+    placeholderChar: '\u2000'
   }
 };
 

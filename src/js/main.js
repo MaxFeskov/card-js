@@ -6,8 +6,8 @@ import { isValid } from './module/validation';
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = function (callback, thisArg) {
     thisArg = thisArg || window;
-    for (let i = 0; i < this.length; i++) {
-      callback.call(thisArg, this[i], i, this);
+    for (let i = 0; i < this.length; i += 1) {
+      callback.call(thisArg, this[Number(i)], i, this);
     }
   };
 }
@@ -90,7 +90,7 @@ window.addEventListener('paymentSystemInfo', (event) => {
 
   const { name } = paymentSystemInfo;
 
-  console.log(name);
+  // console.log(name);
 
   if (window.paymentSystemInfo.name !== name) {
     window.paymentSystemInfo = paymentSystemInfo;
