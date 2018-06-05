@@ -13,7 +13,7 @@ gulp.task('server:init', () => {
     ],
     port: 8080,
     server: { baseDir: './' },
-    reloadDelay: 75,
+    reloadDelay: 200,
   });
 });
 
