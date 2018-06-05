@@ -8127,6 +8127,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.validationPreset = undefined;
+exports.isValidEmail = isValidEmail;
 exports.isValid = isValid;
 
 var _dayjs = require('dayjs');
@@ -8134,6 +8135,14 @@ var _dayjs = require('dayjs');
 var _dayjs2 = _interopRequireDefault(_dayjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function isValidEmail(value) {
+  var input = document.createElement('input');
+  input.type = 'email';
+  input.value = value;
+
+  return input.validity.valid;
+}
 
 var validationPreset = exports.validationPreset = {
   cardholder: function cardholder(rawValue, isRequired) {
@@ -8219,19 +8228,10 @@ var validationPreset = exports.validationPreset = {
 
     return true;
   },
-  email: function email(rawValue, isRequired) {
+  email: function email(rawValue) {
     var value = rawValue.trim();
 
-    if (value !== '') {
-      var rule = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return rule.test(value);
-    }
-
-    if (isRequired) {
-      return false;
-    }
-
-    return true;
+    return isValidEmail(value);
   },
   expdate: function expdate(rawValue, isRequired) {
     var value = rawValue.trim();

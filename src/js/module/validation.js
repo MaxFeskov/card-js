@@ -1,5 +1,13 @@
 import dayjs from 'dayjs';
 
+export function isValidEmail(value) {
+  const input = document.createElement('input');
+  input.type = 'email';
+  input.value = value;
+
+  return input.validity.valid;
+}
+
 export const validationPreset = {
   cardholder(rawValue, isRequired) {
     const value = rawValue.trim();
@@ -88,19 +96,10 @@ export const validationPreset = {
     return true;
   },
 
-  email(rawValue, isRequired) {
+  email(rawValue) {
     const value = rawValue.trim();
 
-    if (value !== '') {
-      const rule = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return rule.test(value);
-    }
-
-    if (isRequired) {
-      return false;
-    }
-
-    return true;
+    return isValidEmail(value);
   },
 
   expdate(rawValue, isRequired) {
